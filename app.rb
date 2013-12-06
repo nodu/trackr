@@ -1,6 +1,7 @@
 require "sinatra/base"
 require "json"
 require 'octokit'
+require 'bundler/setup'
 
 class App < Sinatra::Base
 
