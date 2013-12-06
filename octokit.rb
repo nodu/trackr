@@ -1,4 +1,4 @@
-client = Octokit::Client.new :access_token => "<72db4cbb34c75d7de68718ad313db57918a3f864>"
+client = Octokit::Client.new :access_token => "1bd824b0edefe72389e89bc86a44efa4326fbd44"
 
 user = client.user
 user.login
