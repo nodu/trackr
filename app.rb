@@ -2,6 +2,8 @@ require "sinatra/base"
 require "json"
 require 'octokit'
 require 'bundler/setup'
+require 'dotenv'
+Dotenv.load
 
 class App < Sinatra::Base
 
