@@ -1,3 +1,5 @@
+require 'octokit'
+
 namespace :db do
   
   desc 'Load the seed data from db/seeds.rb'
@@ -13,7 +15,10 @@ namespace :db do
 
 end
 
-  desc 'Load the seed data from db/seeds.rb'
-  task :outside do
-    puts "message outside"
+  desc 'fetch data from Github'
+  task :getgit do
+    puts "fetching data from Github..."
+    x=Octokit.client.contributors("chasm/symbiote")
   end
+
+  
