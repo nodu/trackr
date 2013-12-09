@@ -1,6 +1,6 @@
 require "sinatra/base"
 require "json"
-require 'octokit'
+# require 'octokit'
 require 'bundler/setup'
 require 'dotenv'
 
@@ -54,9 +54,13 @@ class App < Sinatra::Base
   end
 
   get '/github' do 
-    @git = GithubData.new({name: "Bruno", contributions: 5})
-    @git.save
-    puts @git
+    @data = GithubData.all
+    @contrib = []
+    
+    @data.each do |item|
+      @contrib << item.contributions
+    end
+
 
     erb :github
   end
