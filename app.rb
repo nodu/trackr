@@ -3,9 +3,13 @@ require "json"
 require 'octokit'
 require 'bundler/setup'
 require 'dotenv'
+require 'mongo'
+require 'json/ext'
+
 Dotenv.load
 
 class App < Sinatra::Base
+
 
   before do 
   #   @repo = Octokit.repo "chasm/symbiote"
@@ -20,6 +24,12 @@ class App < Sinatra::Base
       @data << i.contributions
     end 
 
+
+
+  configure do
+    conn = MongoClient.new("localhost", 27017)
+    set :mongo_connection, conn
+    set :mongo_db, conn.db('test')
 
   end
 
