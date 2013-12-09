@@ -3,7 +3,6 @@ require "json"
 require 'octokit'
 require 'bundler/setup'
 require 'dotenv'
-require 'mongo'
 require 'json/ext'
 
 Dotenv.load

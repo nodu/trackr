@@ -2,16 +2,17 @@ require 'octokit'
 
 namespace :db do
   
-  desc 'Load the seed data from db/seeds.rb'
-  task :seed do
-    puts "message"
+  desc 'create mongo collection'
+  task :create do
+    puts "Creating Mongo Colletion..."
+    # db.createCollection('github_dev')
   end
 
-  desc 'Load the seed data from db/seeds.rb'
-  task :print do
-    puts "message print"
+  desc 'Drops the database'
+  task :drop do
+    puts "Dropping database..."
+    GithubData.destroy_all
   end
-
 
 end
 
