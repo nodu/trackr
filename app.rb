@@ -3,11 +3,13 @@ require "json"
 require 'octokit'
 require 'bundler/setup'
 require 'dotenv'
+
 require 'mongoid'
+
 require 'json/ext'
 
 Dotenv.load
-Mongoid.load!("config.yml")
+Mongoid.load!("mongoid.yml", :development)
 
 #model for mogoid
 class GithubData

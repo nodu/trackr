@@ -26,7 +26,7 @@ GEM
     moped (1.5.1)
     multi_json (1.8.2)
     multipart-post (1.2.0)
-    octokit (2.6.2)
+    octokit (2.6.3)
       sawyer (~> 0.5.1)
     origin (1.1.0)
     rack (1.5.2)
@@ -37,10 +37,7 @@ GEM
     racksh (1.0.0)
       rack (>= 1.0)
       rack-test (>= 0.5)
-
     rake (10.1.0)
-
-
     sawyer (0.5.1)
       addressable (~> 2.3.5)
       faraday (~> 0.8, < 0.10)
@@ -57,18 +54,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-
-  bundler
-
   bson_ext
->>>>>>> Added mongoid
+  bundler
   dotenv-rails
   mongoid
   octokit (~> 2.0)
   racksh
-<<<<<<< HEAD
   rake
-=======
->>>>>>> Added mongoid
   shotgun
   sinatra
