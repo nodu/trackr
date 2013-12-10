@@ -22,9 +22,10 @@ namespace :db do
     puts "Dropping database..."
     GithubData.destroy_all
   end
+
   desc 'Seeds the database'
   task :seed do
-    symb_data =Octokit.client.contributors("chasm/symbiote")
+    symb_data = Octokit.client.contributors("chasm/symbiote")
     puts "Seeding database..."
     GithubData.destroy_all
     
@@ -34,6 +35,13 @@ namespace :db do
     end
 
     github_data = GithubData.create(data)
+  end
+
+  desc 'Update the database'
+  task :update do
+    puts "Updating the database..."
+    # if login exits in dB, then update the contributions integer
+    # else add the login name / conributions to the GithubData
   end
 
 end
