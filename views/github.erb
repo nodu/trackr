@@ -1,1 +1,32 @@
 <h1>Github View</h1>
+<% @data.each do |item| %>
+  <ul>
+    <li><%= item.name %></li>
+    <li><%= item.contributions %></li>
+
+
+  </ul>
+<% end %>
+
+
+
+ <div class="box"></div>
+
+<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+  <script type="text/javascript">
+  var cont = <%= @contrib %>
+  for (var i = 0; i < cont.length; i++) {
+    $(".box").append('<div class="bar-chart"></div>')    
+  };
+
+
+  
+    d3.select(".box").selectAll("div")
+      .data(cont)
+      .transition()
+      .duration(3000)
+      .style("background-color", "purple")
+      .style("width", function(d) {
+        return d*20 + "px"
+      })
+  </script>
