@@ -30,14 +30,34 @@ namespace :db do
 
   desc 'Seeds the database'
   task :seed do
-    symb_data = O.contributors("chasm/symbiote")
-
+    symb_contrib_data = O.contributors("chasm/symbiote")
+    symb_commit_data = O.commits('chasm/symbiote')
     puts "Seeding database..."
     GithubData.destroy_all
     
-    data = []
-    symb_data.each do |item|
-      data << {name: item.login, contributions: item.contributions}
+    data = {
+      wdi1: {
+        group_repos: {
+          repo1: {
+            data: [],
+            },
+          repo2: {},
+          repo3: {}
+        },
+        class_data: {
+          quizzes: {}
+        },
+        students: []
+      }
+    }
+
+    symb_contrib_data.each do |item|
+      data[:wdi1][:group_repos][:repo1][:login]=item.login
+      data[:wdi1][:group_repos][:repo1][:contributions]=item.contributions
+    end
+
+    symb_commit_data.each do |item|
+      data[:wdi1][:group_repos][:repo1][:commits]=item.count
     end
 
     github_data = GithubData.create(data)
