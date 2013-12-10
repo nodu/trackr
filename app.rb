@@ -1,9 +1,8 @@
 require "sinatra/base"
-require "json"
 require 'bundler/setup'
 require 'dotenv'
 require 'mongoid'
-require 'json/ext'
+
 
 Dotenv.load
 Mongoid.load!("mongoid.yml", :development)
