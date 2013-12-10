@@ -10,23 +10,48 @@
 
 
 
- <div class="box"></div>
+ <div id="chartArea"></div>
 
 <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
   <script type="text/javascript">
-  var cont = <%= @contrib %>
-  for (var i = 0; i < cont.length; i++) {
-    $(".box").append('<div class="bar-chart"></div>')    
-  };
+  
 
+  var cont = <%= @contrib %>
+  // for (var i = 0; i < cont.length; i++) {
+  //   $("#chartArea").append('<div class="bar-chart"></div>')    
+  // };
+
+  var svg = d3.select('#chartArea').append('svg')
+    .attr('width', 400)
+    .attr('height', 300);
+
+  var multiplier = 8;
+
+  svg.selectAll('rect')
+    .data(cont)
+    // .transition()
+    // .duration(3000)
+    .enter()
+    .append('rect')
+    .attr('class', 'bar')
+    .attr('x', function (d, i) {
+      return i * 22;
+    })
+    .attr('y', function (d) {
+      return 300 - d * multiplier;
+    })
+    .attr('width', 20)
+    .attr('height', function (d) {
+      return d * multiplier;
+    });
 
   
-    d3.select(".box").selectAll("div")
-      .data(cont)
-      .transition()
-      .duration(3000)
-      .style("background-color", "purple")
-      .style("width", function(d) {
-        return d*20 + "px"
-      })
+    // d3.select(".box").selectAll("div")
+    //   .data(cont)
+    //   .transition()
+    //   .duration(3000)
+    //   .style("background-color", "purple")
+    //   .style("width", function(d) {
+    //     return d*20 + "px"
+    //   })
   </script>
