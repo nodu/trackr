@@ -1,11 +1,8 @@
 require "sinatra/base"
 require "json"
-# require 'octokit'
 require 'bundler/setup'
 require 'dotenv'
-
 require 'mongoid'
-
 require 'json/ext'
 
 Dotenv.load
@@ -58,7 +55,6 @@ class App < Sinatra::Base
   end
 
   get "/" do
-    @x = []
     erb :index
   end
 
