@@ -21,30 +21,6 @@ end
 
 class App < Sinatra::Base
 
-
-  # before do 
-  # #   @repo = Octokit.repo "chasm/symbiote"
-  # #   @commit = Octokit.commits("chasm/toddycat", nil, :since => "2012-06-28T00:00:00+00:00").length
-  #   @x=Octokit.client.contributors("chasm/symbiote")
-    
-  #   @student=[]
-  #   @data=[]
-
-  #   @x.each do |i|
-  #     @student << i.login
-  #     @data << i.contributions
-  #   end 
-
-
-
-
-  # configure do
-  #   conn = MongoClient.new("localhost", 27017)
-  #   set :mongo_connection, conn
-  #   set :mongo_db, conn.db('test')
-
-  # end
-
   get '/course' do 
     erb :course
   end
