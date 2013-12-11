@@ -1,11 +1,17 @@
 require "sinatra/base"
-require "json"
-require 'octokit'
 require 'bundler/setup'
-require 'dotenv'
-require 'json/ext'
+require 'mongoid'
 
-Dotenv.load
+
+Mongoid.load!("mongoid.yml", :development)
+
+
+#model for mogoid
+class GithubData
+  include Mongoid::Document
+  field :name, type: String
+  field :contributions, type: Integer
+end
 
 class App < Sinatra::Base
 
@@ -18,6 +24,14 @@ class App < Sinatra::Base
   end
 
   get '/github' do 
+    @data = GithubData.all
+    @contrib = []
+    
+    @data.each do |item|
+      @contrib << item.contributions
+    end
+
+
     erb :github
   end
 
