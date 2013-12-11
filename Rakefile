@@ -30,7 +30,6 @@ namespace :db do
 
   desc 'Seeds the database'
   task :seed do
-    puts ENV['GITHUB_TOKEN']
     symb_data = O.contributors("chasm/symbiote")
 
     puts "Seeding database..."
@@ -51,7 +50,6 @@ namespace :db do
     # else add the login name / conributions to the GithubData
   end
 
->>>>>>> Stashed changes
 end
 
   desc 'fetch data from Github'
