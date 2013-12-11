@@ -25,10 +25,26 @@ class App < Sinatra::Base
 
   get '/github' do 
     @data = GithubData.all
-    @contrib = []
+    # @data.each do |x|
+    #   puts x.wdi1.contributions
+    # end
+    # @contrib = []
+    # @name = []
+    @name_contrib = Hash.new
     
     @data.each do |item|
-      @contrib << item.contributions
+      # puts "hey joker"
+      # puts item.wdi1["group_repos"]["repo1"]["data"][0]['contributions']
+      
+      item.wdi1["group_repos"]["repo1"]["data"].each do |i|
+        # @contrib << i['contributions']
+        # @name << i['login']
+        @name_contrib["login"] = "contributions"
+
+        puts @name_contrib
+
+      end
+      
     end
 
 
