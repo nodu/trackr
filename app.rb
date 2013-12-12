@@ -1,6 +1,7 @@
 require "sinatra/base"
 require 'bundler/setup'
 require 'mongoid'
+require 'json/ext'
 
 
 Mongoid.load!("mongoid.yml", :development)
@@ -30,7 +31,7 @@ class App < Sinatra::Base
     # end
     # @contrib = []
     # @name = []
-    @name_contrib = Hash.new
+    @contrib = []
     
     @data.each do |item|
       # puts "hey joker"
@@ -39,9 +40,7 @@ class App < Sinatra::Base
       item.wdi1["group_repos"]["repo1"]["data"].each do |i|
         # @contrib << i['contributions']
         # @name << i['login']
-        @name_contrib["login"] = "contributions"
-
-        puts @name_contrib
+        @contrib << {login: i["login"], contributions: i["contributions"]}
 
       end
       

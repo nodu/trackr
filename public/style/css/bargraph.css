@@ -1,0 +1,18 @@
+svg {
+  position: relative;
+  margin: 10%;
+  margin: 0px auto;
+  bottom: 100px;
+  left: 75px;
+}
+
+.chartArea {
+  height: 300px;
+  width: 300px;
+  background-color: red;
+  float: left;
+}
+
+.whatever {
+float: left; 
+}

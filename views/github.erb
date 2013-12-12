@@ -1,34 +1,44 @@
 <h1>Github View</h1>
-<% @name.each do |item| %>
+<div class="whatever">
+<% @contrib.each do |x| %>
   <ul>
-    <li><%= item %></li>
+    <li><%= x[:login] %>: <%=  x[:contributions] %></li>
   </ul>
 <% end %>
-
-<% @contrib.each do |item| %>
-  <ul>
-    <li><%= item %></li>
-  </ul>
-<% end %>
+</div>
 
 
 
- <div class="box"></div>
+ <div id="chartArea"></div>
 
   <script type="text/javascript">
-  var cont = <%= @contrib %>
-  for (var i = 0; i < cont.length; i++) {
-    $(".box").append('<div class="bar-chart"></div>')    
+  var cont = [];
+  contrib_array = <%= @contrib.to_json %>
+  for (var i = 0; i < contrib_array.length; i++) {
+    cont.push(contrib_array[i].contributions)
   };
+  console.log(cont)
+  var svg = d3.select('#chartArea').append('svg')
+      .attr('width', 300)
+      .attr('height', 300);
 
+    var multiplier = 20;
 
-  
-    d3.select(".box").selectAll("div")
+    svg.selectAll('rect')
       .data(cont)
-      .transition()
-      .duration(3000)
-      .style("background-color", "purple")
-      .style("width", function(d) {
-        return d*20 + "px"
+      // .transition()
+      // .duration(3000)
+      .enter()
+      .append('rect')
+      .attr('class', 'bar')
+      .attr('x', function (d, i) {
+        return i * 45;
       })
+      .attr('y', function (d) {
+        return 300 - d * multiplier;
+      })
+      .attr('width', 30)
+      .attr('height', function (d) {
+        return d * multiplier;
+      });
   </script>
