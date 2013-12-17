@@ -32,6 +32,7 @@ class App < Sinatra::Base
     # @contrib = []
     # @name = []
     @contrib = []
+    # @students_data=[]
     
     @data.each do |item|
       # puts "hey joker"
@@ -43,6 +44,13 @@ class App < Sinatra::Base
         @contrib << {login: i["login"], contributions: i["contributions"]}
 
       end
+      
+      # puts item.wdi1["students"][1]["login"]
+      item.wdi1["students"].each do |i|
+        puts i["login"], i["gravatar_id"], i["user_repos"]
+        # @students_data << { login: i["login"], gravatar_id: i["gravatar_id"] }
+      end
+
       
     end
 
