@@ -12,6 +12,11 @@
 
  <div>
   <h1>Individual Students Data</h1>
+  <% @students_data.each do |x| %>
+  <ul>
+    <li><%= x[:login] %>: <%=  x[:gravatar_id] %></li>
+  </ul>
+<% end %>
   
  </div>
 
