@@ -90,6 +90,9 @@ namespace :db do
       user_commits_count= 0
       user_watching_count = 0
       user_stars_count = 0
+      util_index = 0
+      repo_size = 0
+      total_repos_size = 0
 
       repo = O.repositories(student, :per_page => 100)
       user_watching_count = O.get("users/" + student + "/subscriptions?per_page=100").length
@@ -109,12 +112,28 @@ namespace :db do
           if !item.fork
             user_repos_count += 1
             user_commits_count += O.commits(full_repo_name).length
+            repo_size = O.get("https://api.github.com/repos/" + full_repo_name).size
+            total_repos_size += repo_size
           end
         rescue
           puts "This repo is empty so was not stored: ",full_repo_name
         end
-
       end
+
+      # CALCULATES UTILIZATION INDEX
+      puts "username"
+      puts username
+      puts "user commits"
+      puts user_commits_count
+      puts "user repos count"
+      puts user_repos_count
+      puts "total repos size"
+      puts total_repos_size
+      puts "total repos size / user repos count"
+      puts ( user_repos_count.to_f / (total_repos_size.to_f / 1024) )
+      util_index = (user_commits_count.to_f / ( user_repos_count.to_f / (total_repos_size.to_f / 1024) ))
+      puts "util index"
+      puts util_index
 
       # STREAKS CALCULATION FOR PAST YEAR
       total_streak = 0
@@ -141,7 +160,8 @@ namespace :db do
         user_starred: user_stars_count,
         user_total_streak: total_streak,
         user_max_streak: max_streak,
-        user_streak_days: days_streak 
+        user_streak_days: days_streak,
+        util_index: util_index 
       }
 
     end

@@ -16,7 +16,7 @@ end
 
 class App < Sinatra::Base
 
-  ['/github', '/student'].each do |path|
+  ['/github', '/student', '/linkedin'].each do |path|
     before path do
       @data = GithubData.all
       # @data.each do |x|
@@ -26,6 +26,7 @@ class App < Sinatra::Base
       # @name = []
       @contrib = []
       @students_data=[]
+      @student_util_index = []
       
       @data.each do |item|
         # puts "hey joker"
@@ -38,7 +39,7 @@ class App < Sinatra::Base
 
         end
         
-        puts item.wdi1["students"][1]["login"]
+        # puts item.wdi1["students"][1]["login"]
         item.wdi1["students"].each do |i|
           #puts i["login"], i["gravatar_id"], i["user_repos"]
           @students_data << { 
@@ -52,6 +53,7 @@ class App < Sinatra::Base
             user_max_streak: i["user_max_streak"],
             user_streak_days: i["user_streak_days"]
           }
+          @student_util_index << i["util_index"] 
         end
 
         

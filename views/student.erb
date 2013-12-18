@@ -3,7 +3,7 @@
     <defs id="mdef">
       <pattern id="image" x="0" y="0" height="40" width="40">
         <image x="0" y="0" width="40" height="40" 
-        xlink:href="http://www.gravatar.com/avatar/" <%= @students_data.gravatar_id %></image>
+        xlink:href="http://www.gravatar.com/avatar/0d8e744fc1f159a01201190ef712e8c0"></image>
       </pattern>
     </defs>
   </svg>   
@@ -15,7 +15,7 @@
 var width = 960,
     height = 500;
 var amountOfCircles = <%= @students_data.count %> + 1;
-var nodes = d3.range(amountOfCircles).map(function() { return {radius: 12}; }),
+var nodes = d3.range(amountOfCircles).map(function() { return {radius: 15}; }),
     root = nodes[0],
     color = d3.scale.category10();
 
